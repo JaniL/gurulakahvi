@@ -11,8 +11,6 @@ const {
   GURULAKAHVI_BASEURL
 } = process.env
 
-const vituttaa = `jep katsokaas nyt kyllä vituttaa rupes vähä vituttaan tänä aamuna kävi vähä näin sunnuntaiaamuna kävi tälles tälle kahvinkeittimelle tuli tunnit täyteen varmaan kattokaas mitä tälle kävi tolle tälle näin tälle kävi tälläin näin jos se näkyy tähän kameraan kai se nyt näkyy jotenki halkes toi pohja perkele tosta halkes pohja tästä kahvinkeittimestä halkes pohja nyt kyllä vituttaa ku halkes pohja niin vituttaa kyllä meni kahvinkeitin paskaks pohja halkes tästä oikeen halkes joo pohja halkes oikeen kunnolla tosta napsahti vaan ja halkes pohja niin nyt rupes kyllä vituttaan oikeen rankasti että vituttaa hyvä kahvinkeitin meni siinä tommonen kahvinkeitin meni siinä meni siinä sitte nyt sitte rupes vituttaan ai ai löytysköhän roskiksesta uutta tämmöstä pannua vai mistä löytyis noh kyllä se vituttaa mutta onneksi mulla sattu oleen varakahvinkeitin tämmönen varakahvinkeitin ku BRINSEEES oikeen kunnon kahvinkeitin siinä on sitte varakeitin päästään keitteleen tällä sitte ravitsevat kahvit tällä keittimellä tämmösellä keittimellä keitetään sitte kahvit taas tänään sitte ravitsevat kahvit tulee tämmösellä keittimellä sitte onneks oli varalla tämmönen huh huh muuten ku tää hajos niin vituttaa kyllä silti vaikka on varakeitin niin kyllä vituttaa tää oli hyvä keitin tää oli pirun hyvä kahvinkeitin kyllä nyt kyllä vituttaa ankarasti juu-u ei mulla täällä muuta että tälläsiä tunnelmia täältä tänään oikeen vituttaa rankasti vituttaa hajos kahvinkeitin siinä se ny meni`
-
 const app = express()
 
 app.use(urlencoded({ extended: false }))
@@ -25,6 +23,8 @@ let coffeeStatus = {
 const baseUrl = GURULAKAHVI_BASEURL
 const askForMilk = false
 
+app.use(express.static('static'))
+
 app.post('/voice', (request, response) => {
   // Use the Twilio Node.js SDK to build an XML response
   const twiml = new VoiceResponse();
@@ -32,7 +32,9 @@ app.post('/voice', (request, response) => {
   const { body: { Digits } } = request
 
   if (Digits && Digits === '0') {
-    twiml.say({ voice: 'woman', language: 'fi-FI' }, vituttaa)
+    console.log('Easter egg triggered')
+    twiml.say('Please hold.')
+    twiml.play(baseUrl + '/vituttaa.mp3')
     twiml.redirect('/voice');
   }
 

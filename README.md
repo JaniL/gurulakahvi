@@ -8,3 +8,7 @@ tää oli mun ratkaisu: botti joka soittaa gurulaan ja kysyy mun puolestani et o
 jos haluut pyörittää tätä itse, niin sä tarviit twilioon tunnarit ja puhelinnumeron sieltä.
 
 pliis älä spämmää tai muuten häiriköi ihmisiä gurulassa. tein tän enemmän meemimieles.
+
+## easter egg
+
+lähde: https://www.youtube.com/watch?v=mKLlYlyZvlA
