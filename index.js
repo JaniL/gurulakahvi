@@ -51,6 +51,12 @@ app.post('/voice', (request, response) => {
   response.send(twiml.toString());
 })
 
+app.post('/status', (request, response) => {
+  const { body: { CallStatus } } = request
+  console.log('Call status: ' + CallStatus)
+  response.json({})
+})
+
 const port = 5000
 
 app.listen(port, () => {
@@ -64,6 +70,8 @@ app.listen(port, () => {
         .create({
           url: baseUrl + '/voice',
           to: gurulanumero,
+          statusCallback: baseUrl + '/status',
+          statusCallbackEvent: ['initiated', 'ringing', 'answered', 'completed'],
           from: GURULAKAHVI_PHONENUMBER
         })
         .then(call => console.log(call.sid))
